@@ -39,8 +39,7 @@ public final class PremiumCalculator {
 
     private static Money calculatePerRisk(Policy policy, RiskType riskType) throws UnknownRiskException, NotSupportedCurrencyException {
         try {
-            Money totalPerRisk = policy.getObjects()
-                    .stream()
+            Money totalPerRisk = policy.getObjects().stream()
                     .flatMap(o -> o.getSubobjects().stream())
                     .filter(so -> so.getRiskType() == riskType)
                     .map(so -> so.getSumInsured())
