@@ -2,8 +2,6 @@ package insurance.premium;
 
 
 import insurance.RiskType;
-import org.joda.money.Money;
-
 import java.math.BigDecimal;
 
 public abstract class PremiumCoefficient {

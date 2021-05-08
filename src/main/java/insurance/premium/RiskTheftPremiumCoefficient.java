@@ -1,12 +1,13 @@
 package insurance.premium;
 
-import insurance.policy.Policy;
-import org.joda.money.Money;
 
 import java.math.BigDecimal;
 
 public class RiskTheftPremiumCoefficient extends PremiumCoefficient {
     public static final RiskTheftPremiumCoefficient INSTANCE = new RiskTheftPremiumCoefficient();
+
+    private RiskTheftPremiumCoefficient() {
+    }
 
     @Override
     public BigDecimal calculateCoefficient(BigDecimal sumInsured) {

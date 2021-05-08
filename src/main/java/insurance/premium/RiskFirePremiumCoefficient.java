@@ -1,14 +1,13 @@
 package insurance.premium;
 
-import org.joda.money.Money;
 
 import java.math.BigDecimal;
 
 public class RiskFirePremiumCoefficient extends PremiumCoefficient {
+    public static final RiskFirePremiumCoefficient INSTANCE = new RiskFirePremiumCoefficient();
+
     private RiskFirePremiumCoefficient() {
     }
-
-    public static final RiskFirePremiumCoefficient INSTANCE = new RiskFirePremiumCoefficient();
 
     @Override
     public BigDecimal calculateCoefficient(BigDecimal sumInsured) {

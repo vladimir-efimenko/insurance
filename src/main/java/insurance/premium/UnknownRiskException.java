@@ -1,5 +1,6 @@
 package insurance.premium;
 
+
 import insurance.RiskType;
 
 public class UnknownRiskException extends Exception {

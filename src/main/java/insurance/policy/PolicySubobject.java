@@ -12,7 +12,7 @@ public class PolicySubobject {
     private final RiskType riskType;
 
     public PolicySubobject(String name, RiskType riskType, Money sumInsured) {
-        if(sumInsured.getAmount().equals(BigDecimal.ZERO)) {
+        if(sumInsured.getAmount().compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException("sumInsured can not be zero");
         }
         this.name = name;

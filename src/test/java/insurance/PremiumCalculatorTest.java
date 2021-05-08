@@ -14,6 +14,15 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 public class PremiumCalculatorTest {
+    @Rule
+    public ExpectedException thrown = ExpectedException.none();
+
+    @Test
+    public void emptyPolicy_CalculatesZeroEur() throws NotSupportedCurrencyException, UnknownRiskException {
+        Money result = PremiumCalculator.calculate(new Policy("P1"));
+
+        assertEquals(Money.parse("EUR 0"), result);
+    }
 
     @Test
     public void oneFireOneTheftDefaultCoefficient_CalculatesCorrectly() throws UnknownRiskException, NotSupportedCurrencyException {
@@ -38,9 +47,6 @@ public class PremiumCalculatorTest {
         Money result = PremiumCalculator.calculate(policy);
         assertEquals(Money.parse("EUR 17.13"), result);
     }
-
-    @Rule
-    public ExpectedException thrown = ExpectedException.none();
 
     @Test
     public void subobjectDifferentCurrencies_DifferentRiskTypes_ThrowsCurrencyMismatchException() throws UnknownRiskException, NotSupportedCurrencyException {

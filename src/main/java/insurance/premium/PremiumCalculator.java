@@ -1,5 +1,6 @@
 package insurance.premium;
 
+
 import insurance.RiskType;
 import insurance.policy.Policy;
 import org.joda.money.CurrencyMismatchException;
@@ -19,6 +20,7 @@ public final class PremiumCalculator {
      * @param policy
      * @return Calculated premium
      * @throws UnknownRiskException
+     * @throws NotSupportedCurrencyException
      */
     public static Money calculate(Policy policy) throws UnknownRiskException, NotSupportedCurrencyException {
         Money premium = Money.zero(CurrencyUnit.EUR);
@@ -51,5 +53,9 @@ public final class PremiumCalculator {
         } catch (CurrencyMismatchException e) {
             throw new NotSupportedCurrencyException(e.getSecondCurrency().getCode());
         }
+    }
+
+    public static void main( String[] args ) {
+        System.out.println( "Hello World!" );
     }
 }

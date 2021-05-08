@@ -1,5 +1,6 @@
 package insurance.policy;
 
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,6 +25,10 @@ public class Policy {
 
     public void addPolicyObject(PolicyObject obj) {
         objects.add(obj);
+    }
+
+    public boolean removePolicyObject(PolicyObject obj) {
+        return objects.remove(obj);
     }
 
     public List<PolicyObject> getObjects() {
