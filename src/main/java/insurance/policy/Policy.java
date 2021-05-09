@@ -19,7 +19,7 @@ public class Policy {
             throw new IllegalArgumentException("Policy Number can not be null or empty");
         }
         this.policyNumber = policyNumber;
-        this.objects = policyObjects;
+        this.objects = policyObjects != null ? policyObjects : new ArrayList<>();
     }
 
     public String getPolicyNumber() {

@@ -8,6 +8,8 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import static org.junit.Assert.assertEquals;
+
 
 public class PolicyTest {
 
@@ -23,6 +25,13 @@ public class PolicyTest {
     }
 
     @Test
+    public void policyNullObjectList_InitializesWithEmptyObjectList() {
+        Policy policy = new Policy("P1", null);
+
+        assertEquals(0, policy.getObjects().size());
+    }
+
+    @Test
     public void policyObjectNameNull_ThrowsIllegalArgumentException() {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("PolicyObject name can not be null or empty");
@@ -35,7 +44,14 @@ public class PolicyTest {
         thrown.expect(IllegalArgumentException.class);
         thrown.expectMessage("PolicySubobject name can not be null or empty");
 
-        new PolicySubobject("",  RiskType.THEFT, Money.parse("EUR 0"));
+        new PolicySubobject("", RiskType.THEFT, Money.parse("EUR 0"));
+    }
+
+    @Test
+    public void policyObjectNullSubobjectList_InitializesWithEmptySubobjectList() {
+        PolicyObject obj = new PolicyObject("O1", null);
+
+        assertEquals(0, obj.getSubobjects().size());
     }
 
     @Test
