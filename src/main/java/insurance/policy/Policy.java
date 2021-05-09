@@ -15,6 +15,9 @@ public class Policy {
     }
 
     public Policy(String policyNumber, List<PolicyObject> policyObjects) {
+        if(policyNumber == null || policyNumber.isEmpty()) {
+            throw new IllegalArgumentException("Policy Number can not be null or empty");
+        }
         this.policyNumber = policyNumber;
         this.objects = policyObjects;
     }

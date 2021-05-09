@@ -14,6 +14,9 @@ public class PolicyObject {
     }
 
     public PolicyObject(String name, List<PolicySubobject> subobjects) {
+        if(name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("PolicyObject name can not be null or empty");
+        }
         this.name = name;
         this.subobjects = subobjects;
     }

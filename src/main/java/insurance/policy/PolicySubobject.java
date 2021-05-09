@@ -12,6 +12,9 @@ public class PolicySubobject {
     private final RiskType riskType;
 
     public PolicySubobject(String name, RiskType riskType, Money sumInsured) {
+        if(name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("PolicySubobject name can not be null or empty");
+        }
         if(sumInsured.getAmount().compareTo(BigDecimal.ZERO) == 0) {
             throw new IllegalArgumentException("sumInsured can not be zero");
         }

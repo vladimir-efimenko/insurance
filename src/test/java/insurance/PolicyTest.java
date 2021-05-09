@@ -15,6 +15,30 @@ public class PolicyTest {
     public ExpectedException thrown = ExpectedException.none();
 
     @Test
+    public void policyNameEmpty_ThrowsIllegalArgumentException() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("Policy Number can not be null or empty");
+
+        new Policy("");
+    }
+
+    @Test
+    public void policyObjectNameNull_ThrowsIllegalArgumentException() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("PolicyObject name can not be null or empty");
+
+        new PolicyObject(null);
+    }
+
+    @Test
+    public void policySubobjectNameEmpty_ThrowsIllegalArgumentException() {
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("PolicySubobject name can not be null or empty");
+
+        new PolicySubobject("",  RiskType.THEFT, Money.parse("EUR 0"));
+    }
+
+    @Test
     public void policyAddObjectDirectlyToCollection_ThrowsUnsupportedOperationException() {
         thrown.expect(UnsupportedOperationException.class);
 
