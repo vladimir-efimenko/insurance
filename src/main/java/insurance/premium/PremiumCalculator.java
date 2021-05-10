@@ -41,21 +41,24 @@ public final class PremiumCalculator {
 
     private static Money calculatePerRisk(Policy policy, RiskType riskType) throws UnknownRiskException, NotSupportedCurrencyException {
         try {
-            Money totalPerRisk = policy.getObjects().stream()
+            Money zero = Money.zero(CurrencyUnit.EUR);
+            Money sumInsuredPerRisk = policy.getObjects().stream()
                     .flatMap(o -> o.getSubobjects().stream())
                     .filter(so -> so.getRiskType() == riskType)
                     .map(so -> so.getSumInsured())
-                    .reduce(Money.zero(CurrencyUnit.EUR), Money::plus);
+                    .reduce(zero, Money::plus);
+
+            if (sumInsuredPerRisk.equals(zero)) return zero;
 
             PremiumCoefficient coeff = PremiumCoefficient.of(riskType);
-            BigDecimal amount = totalPerRisk.getAmount();
-            return totalPerRisk.multipliedBy(coeff.calculateCoefficient(amount), RoundingMode.HALF_EVEN);
+            BigDecimal amount = sumInsuredPerRisk.getAmount();
+            return sumInsuredPerRisk.multipliedBy(coeff.calculateCoefficient(amount), RoundingMode.HALF_EVEN);
         } catch (CurrencyMismatchException e) {
             throw new NotSupportedCurrencyException(e.getSecondCurrency().getCode());
         }
     }
 
-    public static void main( String[] args ) {
-        System.out.println( "Hello World!" );
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
     }
 }
